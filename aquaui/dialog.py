@@ -12,65 +12,51 @@ class Icon(Enum):
     STOP = "stop"
 
 
-def dialog(
-    title: str, buttons: Union[Buttons, None] = None, icon: Union[str, Icon, None] = None, return_applescript=False
-):
-    """Show a dialog with an icon, text, and buttons"""
+class Dialog:
+    def __init__(self, title: str) -> None:
+        """Start generation of applescript for dialog"""
 
-    applescript = f"display dialog {quotify(title)} "
+        self.applescript = f"display dialog {quotify(title)} "
 
-    if buttons is not None:
-        applescript += f"{buttons.applescript_fragment} "
+    def with_buttons(self, buttons: Union[Buttons, None] = None):
+        """If buttons is None, default buttons are displayed"""
 
-    applescript_fragment: str
-    if icon is not None:
-        # relative path
-        if isinstance(icon, str):
+        if buttons is not None:
+            self.applescript += f"{buttons.applescript_fragment} "
 
-            # TODO: also support absolute file paths
-            # pwd = run_command("pwd")
-            # icon_path = f"{pwd}/{icon}"
-            # icon_path = os.path.join(pwd, icon)
+        return self
 
-            icon_path = icon
-            applescript_fragment = f"with icon POSIX file {quotify(icon_path)}"
+    def with_icon(self, icon: Union[str, Icon] = None):
+        """Use custom icons or built-in icons"""
 
-        # applescript built in icon
-        elif isinstance(icon, Icon):
-            applescript_fragment = f"with icon {icon.value}"
+        applescript_fragment: str
+        if icon is not None:
+            if isinstance(icon, str):
+                # TODO: also support absolute file paths
+                icon_path = icon
+                applescript_fragment = f"with icon POSIX file {quotify(icon_path)}"
 
-        else:
-            raise Exception("Incorrect datatype for property icon")
+            # applescript built in icon
+            elif isinstance(icon, Icon):
+                applescript_fragment = f"with icon {icon.value}"
 
-        applescript += f"{applescript_fragment} "
+            else:
+                raise Exception("Incorrect datatype for property icon")
 
-    if return_applescript:
-        return applescript
+            self.applescript += f"{applescript_fragment} "
 
-    """
-    An error is thrown if the dialog gets cancelled by the escape key
-    """
-    try:
-        return Result(run_applescript(applescript))
-    except:
-        return Result.escaped()
+        return self
 
+    def with_input(self, default_response: str = ""):
+        """Specify default answer"""
 
-def dialog_prompt(
-    title: str,
-    default_text: str = "",
-    buttons: Union[Buttons, None] = None,
-    icon: Union[str, Icon, None] = None,
-    return_applescript=False,
-):
-    """Show a dialog with an icon, text, input field, and buttons"""
+        self.applescript += f"default answer {quotify(default_response)} "
+        return self
 
-    applescript = dialog(title, buttons, icon, return_applescript=True)  # Returns a string for sure
-
-    applescript += 'default answer ""'  # type: ignore
-
-    if return_applescript:
-        return applescript
-
-    # It seems that dialogs prompts cannot be canclled with the escape key
-    return Result(run_applescript(applescript))
+    def show(self):
+        try:
+            return Result(run_applescript(self.applescript))
+        except:
+            # On some cases, the dislog can be dismissed with the escape key,
+            # and an error is thrown
+            return Result.escaped()

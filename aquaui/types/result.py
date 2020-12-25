@@ -3,8 +3,8 @@ from typing import Union
 
 class Result:
     def __init__(self, string_result: Union[str, None], cancelled=False) -> None:
-        self.button_returned: str = "one"
-        self.text_returned: str = "two"
+        self.button_returned: str = ""
+        self.text_returned: str = ""
         self.cancelled = cancelled
 
         # Set attributes based on output
@@ -21,8 +21,8 @@ class Result:
                 elif key == "text_returned":
                     self.text_returned = value
 
-    # @staticmethod
-    # def escaped():
-    #     """Used when dialog is cancelled with escape key"""
+    @staticmethod
+    def escaped():
+        """Used when dialog is cancelled with escape key"""
 
-    #     return Result(None, cancelled=True)
+        return Result(None, cancelled=True)

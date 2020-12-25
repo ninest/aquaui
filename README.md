@@ -92,34 +92,30 @@ See the `examples/` directory. Feel free to make a pull request to add more exam
 **Show a dialog with the buttons "Go" (default) and "No" (to cancel) with the caution icon:**
 
 ```py
-from aquaui import dialog, Buttons, Icon
+from aquaui import Dialog, Buttons, Icon
 
-buttons = Buttons(["Go", "No"], default_button="Go", cancel_button="Nah")
-result = dialog("Hello", buttons=buttons, icon=Icon.CAUTION)
+buttons = Buttons(["Go", "No"], default_button="Go", cancel_button="No")
+result = Dialog("Hello!").with_buttons(buttons).with_icon(Icon.CAUTION).show()
 ```
 
 **Execute functions based on the button clicked:**
 
 ```py
-from aquaui import dialog, Buttons
+from aquaui import Dialog, Buttons
 
 button_one = "One"
 button_two = "Two"
 buttons = Buttons([button_one, button_two])
 
-result = dialog("Press a button", buttons=buttons)
-
+result = Dialog("Press a button").with_buttons(buttons).show()
 
 if result.button_returned == button_one:
   print("Button One was pressed")
 elif result.button_returned == button_two:
   print("Button Two was pressed")
+
 ```
 
 ## License
 
 MIT
-
-```
-
-```
