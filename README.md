@@ -115,8 +115,18 @@ if result.button_returned == button_one:
   print("Button One was pressed")
 elif result.button_returned == button_two:
   print("Button Two was pressed")
-
 ```
+
+**Display a choice dialog with the options "Netflix" and "Prime Video"**
+
+```py
+from aquaui import Choice
+
+provider = Choice("Choose the streaming platform").with_choices(["Netflix", "Prime Video"]).show()
+print(provider)
+```
+
+If this example interests you, check out my other library [Flixpy](https://github.com/ninest/flixpy).
 
 ## License
 
