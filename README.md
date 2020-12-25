@@ -9,7 +9,8 @@ Display native dialogs, alerts, notifications, color pickers, and more with Pyth
 </p>
 
 <p align="center">
-  <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/ninest/flixpy/PyTest?style=flat-square">
+  <img alt="GitHub Workflow Status" src="https://img.shields.io/github/workflow/status/ninest/aquaui/Run%20tests?style=flat-square">
+
   <a href="https://pypi.org/project/aquaui/">
     <img src="https://img.shields.io/pypi/v/aquaui?color=blue&style=flat-square" alt="Version" />
   </a>
@@ -43,7 +44,7 @@ Display native dialogs, alerts, notifications, color pickers, and more with Pyth
   - [x] Customize title, subtitle, and informational text
   - [x] Customize icon
   - [x] Schedulable
-  - [ ] Callbacks (button pressed, reply text) – [relevant](https://stackoverflow.com/a/62248246/8677167)
+  - [ ] Callbacks (button pressed, reply text) – [relevant stackoverflow answer](https://stackoverflow.com/a/62248246/8677167)
 
 ## Documentation
 
@@ -86,7 +87,7 @@ the_dialog.show()
 
 These are chainable functions to use on a `Dialog` object. See the [examples](#Examples) too.
 
-##### `.show`
+##### `.show()`
 
 Display the dialog and return a result (see `.with_buttons` and `.with_input`).
 
@@ -105,7 +106,7 @@ from aquaui import Dialog
 the_dialog = Dialog("This is the dialog title").show()
 ```
 
-##### `.with_buttons`
+##### `.with_buttons(buttons: Buttons)`
 
 A list of buttons along with the default and cancel button can be specified.
 
@@ -176,7 +177,7 @@ print(result.button_returned) # => a string of the button pressed
 # Either "Enter" or "Exit"
 ```
 
-##### `.with_input`
+##### `.with_input(default_answer: str or None)`
 
 Specified that the dialog should have a text box:
 
@@ -224,7 +225,7 @@ Display a dialog with a list of choices to choose from.
 
 These are chainable functions to use on a `Choice` object. See the [examples](#Examples) too.
 
-##### `.with_choices`
+##### `.with_choices(choices: List[str])`
 
 A list of choices for the dialog.
 
@@ -236,7 +237,7 @@ the_choice.with_choices(["One", "Two", "Three"])
 the_choice.show()
 ```
 
-##### `.default_choice`
+##### `.default_choice(choice: str)`
 
 The default choice.
 
@@ -251,7 +252,7 @@ the_choice.show()
 
 The default choice has to be in the list passed in to `.with_choices`, otherwise an error is thrown.
 
-##### `.show`
+##### `.show()`
 
 Shows the choice dialog and returns the text selected, or `""` (empty string) if nothing was selected.
 
@@ -285,7 +286,70 @@ else:
 
 ### Notification
 
+A native notification with a customizable title, subtitle, and informational text. In some cases, and icon and delay can also be set.\*
+
+#### Parameters
+
+- `title`: The notification's title
+
+#### Functions
+
+Similarly, these are also all chainable functions
+
+##### `.with_subtitle(subtitle: str)`
+
+Set the subtitle of the notification (second line).
+
+##### `.with_informative_text(info_text: str)`
+
+Set the informational text of the notification (third line).
+
+##### `.with_identity_image(image_path: str)` \*
+
+Set the image on the right side of the notification.
+
+##### `.with_delay(delay: int)` \*
+
+Set the delay in seconds between when `.send()` is called and the notification being shown.
+
+##### `.send()`
+
+Send the notification.
+
+\* Please see this [stackoverflow answer](https://stackoverflow.com/a/62248246/8677167).
+
+```py
+from aquaui import Notification
+
+notification = (
+    Notification("Hello!")
+    .with_subtitle("This is the subtitle!")
+    .with_informative_text("Isn't this informative?")
+    .with_identity_image("assets/folder.png")  # the image on the right of the notification
+    .send()
+)
+```
+
+```py
+from aquaui import Notification
+
+notification = Notification("Your pizza is here!").with_delay(15).send()
+# 15 seconds delay
+```
+
+#### Fallback
+
+In some cases, the native notification cannot be displayed, so the fallback notification will be sent instead. This fallback notification can only have the title, subtitle, and informational text. It cannot have an icon or delay.
+
+- TBD
+
 ### Color picker
+
+- TBD
+
+### Alert
+
+- TBD
 
 ## Examples
 
