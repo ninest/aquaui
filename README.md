@@ -48,6 +48,43 @@ Display native dialogs, alerts, notifications, color pickers, and more with Pyth
 
 ## Documentation
 
+<details>
+  
+  <summary>
+    View Table of Contents
+  </summary>
+  
+  
+  - [Documentation](#documentation)
+  - [Basic usage](#basic-usage)
+  - [Dialog](#dialog)
+    - [Parameters](#parameters)
+    - [Functions](#functions)
+      - [`.show()`](#show)
+      - [`.with_buttons(buttons: Buttons)`](#with_buttonsbuttons-buttons)
+      - [`.with_input(default_answer: str or None)`](#with_inputdefault_answer-str-or-none)
+  - [Choice](#choice)
+    - [Parameters](#parameters-1)
+    - [Functions](#functions-1)
+      - [`.with_choices(choices: List[str])`](#with_choiceschoices-liststr)
+      - [`.default_choice(choice: str)`](#default_choicechoice-str)
+      - [`.show()`](#show-1)
+  - [Notification](#notification)
+    - [Parameters](#parameters-2)
+    - [Functions](#functions-2)
+      - [`.with_subtitle(subtitle: str)`](#with_subtitlesubtitle-str)
+      - [`.with_informative_text(info_text: str)`](#with_informative_textinfo_text-str)
+      - [`.with_identity_image(image_path: str)` \*](#with_identity_imageimage_path-str-)
+      - [`.with_delay(delay: int)` \*](#with_delaydelay-int-)
+      - [`.send()`](#send)
+    - [Fallback](#fallback)
+  - [Color picker](#color-picker)
+  - [Alert](#alert)
+- [Examples](#examples)
+  
+  
+</details>
+
 ### Installation
 
 ```bash
@@ -269,9 +306,7 @@ else:
 
 <details>
 <summary>
-
 How to check if a string is empty?
-
 </summary>
 
 ```py
