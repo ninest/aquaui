@@ -5,4 +5,4 @@ def quotify(string):
     '"some string"'
     """
 
-    pass
+    return f'"{string}"'
