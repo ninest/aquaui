@@ -12,10 +12,15 @@ class Icon(Enum):
     STOP = "stop"
 
 
-def dialog(title: str, buttons: Buttons, icon: Union[str, Icon, None] = None):
+def dialog(
+    title: str, buttons: Union[Buttons, None] = None, icon: Union[str, Icon, None] = None, return_applescript=False
+):
     """Show a dialog with an icon, text, and buttons"""
 
-    applescript = f"display dialog {quotify(title)} {buttons.applescript_fragment} "
+    applescript = f"display dialog {quotify(title)} "
+
+    if buttons is not None:
+        applescript += f"{buttons.applescript_fragment} "
 
     applescript_fragment: str
     if icon is not None:
@@ -37,11 +42,35 @@ def dialog(title: str, buttons: Buttons, icon: Union[str, Icon, None] = None):
         else:
             raise Exception("Incorrect datatype for property icon")
 
-        applescript += applescript_fragment
+        applescript += f"{applescript_fragment} "
 
-    return Result(run_applescript(applescript))
+    if return_applescript:
+        return applescript
+
+    """
+    An error is thrown if the dialog gets cancelled by the escape key
+    """
+    try:
+        return Result(run_applescript(applescript))
+    except:
+        return Result.escaped()
 
 
-def dialog_prompt():
+def dialog_prompt(
+    title: str,
+    default_text: str = "",
+    buttons: Union[Buttons, None] = None,
+    icon: Union[str, Icon, None] = None,
+    return_applescript=False,
+):
     """Show a dialog with an icon, text, input field, and buttons"""
-    pass
+
+    applescript = dialog(title, buttons, icon, return_applescript=True)  # Returns a string for sure
+
+    applescript += 'default answer ""'  # type: ignore
+
+    if return_applescript:
+        return applescript
+
+    # It seems that dialogs prompts cannot be canclled with the escape key
+    return Result(run_applescript(applescript))

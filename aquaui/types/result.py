@@ -1,19 +1,28 @@
+from typing import Union
+
+
 class Result:
-    def __init__(self, string_result) -> None:
-        self.button = None
-        self.text = None
+    def __init__(self, string_result: Union[str, None], cancelled=False) -> None:
+        self.button_returned: str = "one"
+        self.text_returned: str = "two"
+        self.cancelled = cancelled
 
-        """Go through results and set attributes accordingly"""
+        # Set attributes based on output
+        if string_result is not None:
+            for data in string_result.split(","):
+                data = data.strip()
 
-        for data in string_result.split(","):
-            data = data.strip()
+                key, value = data.split(":")
+                key = key.replace(" ", "_")
 
-            key, value = data.split(":")
-            key = key.replace(" ", "_")
+                # setattr(self, key, value)
+                if key == "button_returned":
+                    self.button_returned = value
+                elif key == "text_returned":
+                    self.text_returned = value
 
-            if key == "button_returned":
-                self.button = value
-            elif key == "text_returned":
-                self.text = value
-            else:
-                setattr(self, key, value)
+    # @staticmethod
+    # def escaped():
+    #     """Used when dialog is cancelled with escape key"""
+
+    #     return Result(None, cancelled=True)
