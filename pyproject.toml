@@ -10,6 +10,7 @@ documentation = "https://github.com/ninest/aquaui/"
 
 [tool.poetry.dependencies]
 python = "^3.7"
+pyobjc = "^7.0.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

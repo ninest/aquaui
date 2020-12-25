@@ -27,4 +27,7 @@ class Choice:
         return self
 
     def show(self) -> str:
-        return run_applescript(self.applescript).strip()
+        result = run_applescript(self.applescript).strip()
+        if result == "false":
+            result = ""
+        return result

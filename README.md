@@ -36,13 +36,13 @@ Display native dialogs, alerts, notifications, color pickers, and more with Pyth
 
 - [x] Display dialogs
   - [x] Dialog prompts
-  - [ ] Icon support
+  - [x] Icon support
 - [ ] Alerts
-- [ ] Choice dialogs
+- [x] Choice dialogs
 - [ ] Notifications
-  - [ ] Customize title, subtitle, and informational text
-  - [ ] Customize icon
-  - [ ] Schedulable
+  - [x] Customize title, subtitle, and informational text
+  - [x] Customize icon
+  - [x] Schedulable
   - [ ] Callbacks (button pressed, reply text) – [relevant](https://stackoverflow.com/a/62248246/8677167)
 
 ## Documentation
@@ -72,16 +72,216 @@ print(result)
 ### Dialog
 
 ```py
-from aquaui import dialog
+from aquaui import Dialog
+
+the_dialog = Dialog("This is the dialog title")
+the_dialog.show()
 ```
 
-### Dialog prompt
+#### Parameters
+
+- `title`: the text shown in the dialog
+
+#### Functions
+
+These are chainable functions to use on a `Dialog` object. See the [examples](#Examples) too.
+
+##### `.show`
+
+Display the dialog and return a result (see `.with_buttons` and `.with_input`).
 
 ```py
-from aquaui import dialog_prompt
+from aquaui import Dialog
+
+the_dialog = Dialog("This is the dialog title")
+the_dialog.show()
+```
+
+Note that the above code is the same as
+
+```py
+from aquaui import Dialog
+
+the_dialog = Dialog("This is the dialog title").show()
+```
+
+##### `.with_buttons`
+
+A list of buttons along with the default and cancel button can be specified.
+
+```py
+from aquaui import Dialog, Buttons
+
+buttons = Buttons(["Enter", "Exit"])
+```
+
+The default button is highlighted:
+
+```py
+buttons = Buttons(["Enter", "Exit"], default_button="Enter")
+```
+
+Setting `default_button` and `cancel_button` is optional. Note that if a button is specified, its string needs to be in the list.
+
+This code will **throw an error**:
+
+```py
+buttons = Buttons(["Enter", "Exit"], default_button="Go")
+# => Exception: Default Button not in buttons list
+
+buttons_2 = Buttons(["Enter", "Exit"], default_button="Enter", cancel_button="No")
+# => Exception: Cancel Button not in buttons list
+```
+
+Once the buttons have been defined, pass them into the dialog with the `.with_buttons` chainable function:
+
+```py
+from aquaui import Dialog
+
+buttons = Buttons(["Enter", "Exit"])
+the_dialog = Dialog("This is the dialog title").with_buttons(buttons)
+```
+
+Finally, display the dialog with `.show()`:
+
+```py
+from aquaui import Dialog
+
+buttons = Buttons(["Enter", "Exit"])
+the_dialog = Dialog("This is the dialog title").with_buttons(buttons).show()
+```
+
+Note that the above code is the same as
+
+```py
+from aquaui import Dialog
+
+buttons = Buttons(["Enter", "Exit"])
+the_dialog = Dialog("This is the dialog title")
+the_dialog.with_buttons(buttons)
+the_dialog.show()
+```
+
+The `.show()` function will return a `Result` object which contains the `button_returned` (and `text_returned` if it's a dialog with an input – see `.with_input`)
+
+```py
+from aquaui import Dialog
+
+buttons = Buttons(["Enter", "Exit"])
+the_dialog = Dialog("This is the dialog title")
+the_dialog.with_buttons(buttons)
+result = the_dialog.show()
+
+print(result.button_returned) # => a string of the button pressed
+# Either "Enter" or "Exit"
+```
+
+##### `.with_input`
+
+Specified that the dialog should have a text box:
+
+```py
+from aquaui import Dialog
+
+buttons = Buttons(["Enter", "Exit"])
+the_dialog = Dialog("This is the dialog title")
+the_dialog.with_buttons(buttons)
+the_dialog.with_input()
+
+result = the_dialog.show()
+
+result.button_returned  # => string of button pressed
+result.text_returned  # => text entered in input
+```
+
+A default value can be provided:
+
+```py
+...
+
+the_dialog.with_input("default text in textbox")
+
+...
 ```
 
 ### Choice
+
+```py
+from aquaui import Choice
+
+the_choice = Choice("Choose below").with_choices(["One", "Two", "Three"]).show()
+
+print(the_choice)  # => Choice selected ("One", "Two", or "Three"), or false if none selected
+```
+
+Display a dialog with a list of choices to choose from.
+
+#### Parameters
+
+- `title`: The title of the choice selection dialog
+
+#### Functions
+
+These are chainable functions to use on a `Choice` object. See the [examples](#Examples) too.
+
+##### `.with_choices`
+
+A list of choices for the dialog.
+
+```py
+from aquaui import Choice
+
+the_choice = Choice("Choose below")
+the_choice.with_choices(["One", "Two", "Three"])
+the_choice.show()
+```
+
+##### `.default_choice`
+
+The default choice.
+
+```py
+from aquaui import Choice
+
+the_choice = Choice("Choose below")
+the_choice.with_choices(["One", "Two", "Three"])
+the_choice.default_choice("One")
+the_choice.show()
+```
+
+The default choice has to be in the list passed in to `.with_choices`, otherwise an error is thrown.
+
+##### `.show`
+
+Shows the choice dialog and returns the text selected, or `""` (empty string) if nothing was selected.
+
+```py
+from aquaui import Choice
+
+the_choice = Choice("Choose below").with_choices(["One", "Two", "Three"]).default_choice("One").show()
+
+if the_choice:
+  print(f"{the_choice} was selected")
+else:
+  print("Nothing was selected")
+```
+
+<details>
+<summary>
+
+How to check if a string is empty?
+
+</summary>
+
+```py
+my_string = ""
+if my_string:
+  # string not empty
+else:
+  # string empty :(
+```
+
+</details>
 
 ### Notification
 
@@ -127,6 +327,29 @@ print(provider)
 ```
 
 If this example interests you, check out my other library [Flixpy](https://github.com/ninest/flixpy).
+
+**Display a notification:**
+
+```py
+from aquaui import Notification
+
+notification = (
+    Notification("Hello!")
+    .with_subtitle("This is the subtitle!")
+    .with_informative_text("Isn't this informative?")
+    .with_identity_image("assets/folder.png")  # the image on the right of the notification
+    .send()
+)
+```
+
+**Schedule a notification:**
+
+```py
+from aquaui import Notification
+
+notification = Notification("Your pizza is here!").with_delay(15).send()
+# 15 seconds delay
+```
 
 ## License
 
