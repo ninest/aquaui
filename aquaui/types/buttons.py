@@ -22,6 +22,19 @@ class Buttons:
         self.cancel_button = cancel_button
 
     @property
-    def string(self):
+    def string(self) -> str:
         """Get a string of all buttons"""
         return ", ".join(map(quotify, self.buttons))
+
+    @property
+    def applescript_fragment(self) -> str:
+        """Generate the applescript fragment for the button"""
+
+        script_fragment = f"buttons {{ {self.string} }}"
+
+        if self.cancel_button is not None:
+            script_fragment += f"cancel button {quotify(self.cancel_button)}"
+        if self.default_button is not None:
+            script_fragment += f"default button {quotify(self.default_button)}"
+
+        return script_fragment
