@@ -58,11 +58,13 @@ pip3 install aquaui
 
 ### Basic usage
 
-```py
-from aquaui import dialog, Buttons, Icon
+Show a dialog with two buttons **Go** and **No**:
 
-buttons = Buttons(["Go", "Nah"], default_button="Go", cancel_button="Nah")
-result = dialog("Hello", buttons=buttons, icon=Icon.CAUTION)
+```py
+from aquaui import Dialog, Buttons, Icon
+
+buttons = Buttons(["Go", "No"], default_button="Go", cancel_button="No")
+result = Dialog("Hello!").with_buttons(buttons).with_icon(Icon.CAUTION).show()
 
 print(result)
 ```

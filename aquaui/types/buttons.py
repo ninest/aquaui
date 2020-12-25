@@ -30,11 +30,11 @@ class Buttons:
     def applescript_fragment(self) -> str:
         """Generate the applescript fragment for the button"""
 
-        script_fragment = f"buttons {{ {self.string} }}"
+        script_fragment = f"buttons {{ {self.string} }} "
 
-        if self.cancel_button is not None:
-            script_fragment += f"cancel button {quotify(self.cancel_button)}"
         if self.default_button is not None:
-            script_fragment += f"default button {quotify(self.default_button)}"
+            script_fragment += f"default button {quotify(self.default_button)} "
+        if self.cancel_button is not None:
+            script_fragment += f"cancel button {quotify(self.cancel_button)} "
 
         return script_fragment
