@@ -34,6 +34,8 @@ def run_applescript(script: str, no_return: bool = False):
         "
     """
 
+    print(command)
+
     # Notifications don't get an "answer"
     if no_return:
         command = f"""
