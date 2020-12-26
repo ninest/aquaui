@@ -14,7 +14,7 @@ Similarly, these are also all chainable functions
 
 Set the subtitle of the notification (second line).
 
-### `.with_informative_text(info_text: str)`
+### `.with_informative_text(info_text: str)` \*
 
 Set the informational text of the notification (third line).
 
@@ -30,7 +30,7 @@ Set the delay in seconds between when `.send()` is called and the notification b
 
 Send the notification.
 
-\* Please see this [stackoverflow answer](https://stackoverflow.com/a/62248246/8677167).
+\* Please see this [stackoverflow answer](https://stackoverflow.com/a/62248246/8677167). If your mac is unable to send notification from Python for an reason, aquaui will fallback to AppleScript notifications, where only the **title** and **subtitle** can be specified. The icon will be that of the AppleScript editor app.
 
 ```py
 from aquaui import Notification
