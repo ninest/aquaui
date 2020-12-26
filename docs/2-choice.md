@@ -16,7 +16,7 @@ Display a dialog with a list of choices to choose from.
 
 ## Functions
 
-These are chainable functions to use on a `Choice` object. See the [examples](#Examples) too.
+These are chainable functions to use on a `Choice` object. See the [examples](https://github.com/ninest/aquaui#examples) too.
 
 ### `.with_choices(choices: List[str])`
 

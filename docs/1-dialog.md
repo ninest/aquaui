@@ -13,7 +13,7 @@ the_dialog.show()
 
 ## Functions
 
-These are chainable functions to use on a `Dialog` object. See the [examples](#Examples) too.
+These are chainable functions to use on a `Dialog` object. See the [examples](https://github.com/ninest/aquaui#examples) too.
 
 ### `.show()`
 

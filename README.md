@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="https://raw.githubusercontent.com/ninest/aquaui/master/assets/icon.svg" width=95>
+  <img src="https://raw.githubusercontent.com/ninest/aquaui/master/assets/icon.svg" width=155>
   <br>
   aquaui
 </h1>
@@ -30,7 +30,7 @@ Display native dialogs, alerts, notifications, color pickers, and more with Pyth
 ## Useful links
 
 - [Documentation](https://github.com/ninest/aquaui/tree/master/docs)
-- [Examples](#Examples)
+- [Examples](https://github.com/ninest/aquaui#examples)
 - [Discussions](https://github.com/ninest/aquaui/discussions)
 
 ## Features
@@ -58,7 +58,7 @@ Display native dialogs, alerts, notifications, color pickers, and more with Pyth
 3. [Notification](https://github.com/ninest/aquaui/blob/master/assets/3-notification.md)
 4. [Color picker](https://github.com/ninest/aquaui/blob/master/assets/4-color_picker.md)
 5. [Alert](https://github.com/ninest/aquaui/blob/master/assets/5-alert.md)
-6. [Examples](#Examples)
+6. [Examples](https://github.com/ninest/aquaui#examples)
 
 ## Examples
 
