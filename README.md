@@ -1,5 +1,5 @@
 <h1 align="center">
-  <!-- <img src=assets/logo.svg width=95> -->
+  <img src="https://raw.githubusercontent.com/ninest/aquaui/master/assets/icon.svg" width=95>
   <br>
   aquaui
 </h1>
