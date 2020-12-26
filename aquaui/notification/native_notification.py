@@ -6,6 +6,8 @@ import Foundation
 # This import is required for NSImage
 import AppKit  # noqa: 5401
 
+from .fallback_notification import ApplescriptNotification
+
 NSUserNotification = objc.lookUpClass("NSUserNotification")  # type: ignore
 NSUserNotificationCenter = objc.lookUpClass("NSUserNotificationCenter")  # type: ignore
 NSUrl = objc.lookUpClass("NSURL")  # type: ignore
@@ -24,6 +26,7 @@ class Notification:
 
         if title is not None:
             self.notification.setTitle_(title)
+            self.title = title
 
     def with_subtitle(self, subtitle: str):
         """
@@ -31,6 +34,7 @@ class Notification:
         """
 
         self.notification.setSubtitle_(subtitle)
+        self.subtitle = subtitle
         return self
 
     def with_informative_text(self, informative_text: str):
@@ -76,5 +80,8 @@ class Notification:
         )
         return self
 
-    def send(self) -> None:
-        NSUserNotificationCenter.defaultUserNotificationCenter().scheduleNotification_(self.notification)
+    def send(self) -> Union[None, str]:
+        try:
+            NSUserNotificationCenter.defaultUserNotificationCenter().scheduleNotification_(self.notification)
+        except:
+            return ApplescriptNotification(self.title).with_subtitle(self.subtitle).send()

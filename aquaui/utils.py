@@ -16,11 +16,20 @@ def run_command(command: str):
     return result.decode("utf-8")
 
 
-def run_applescript(script: str):
+def run_applescript(script: str, no_return: bool = False):
     command = f"""
         osascript -e '\
             set answer to {script}
             return answer
         '
     """
+
+    # Notifications don't get an "answer"
+    if no_return:
+        command = f"""
+            osascript -e '\
+                {script}
+            '
+        """
+
     return run_command(command)
