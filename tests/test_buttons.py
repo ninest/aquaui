@@ -19,6 +19,15 @@ def test_buttons_string(buttons: Buttons):
     assert buttons.string == '"Cancel", "More", "Enter"'
 
 
+def test_max_buttons():
+    """
+    Should through an error as there are more than three buttons
+    """
+
+    with pytest.raises(Exception):
+        Buttons(["One", "Two", "Three", "Four"])
+
+
 def test_buttons_error():
     """
     Should through an error as the default/cancel button are not in the

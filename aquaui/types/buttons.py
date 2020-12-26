@@ -3,7 +3,7 @@ from ..utils import quotify
 
 
 class Buttons:
-    """Provider the buttons, default button, and cancel button for dialogs and alerts"""
+    """Provide the buttons, default button, and cancel button for dialogs and alerts"""
 
     def __init__(
         self,
@@ -11,6 +11,10 @@ class Buttons:
         default_button: Union[str, None] = None,
         cancel_button: Union[str, None] = None,
     ) -> None:
+        # Maximum 3 buttons
+        if len(buttons) > 3:
+            raise Exception("There can be a maximum of 3 buttons only")
+
         if (default_button is not None) and (default_button not in buttons):
             raise Exception("Default Button not in buttons list")
 
