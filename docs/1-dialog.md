@@ -105,6 +105,28 @@ print(result.button_returned) # => a string of the button pressed
 # Either "Enter" or "Exit"
 ```
 
+### `.with_icon(icon: str ath of Icon)`:
+
+Specify a relative file path for an icon, or use a built-in icon (with the `Icon` enum).
+
+```py
+...
+the_dialog.with_icon("assets/folder.png")
+...
+```
+
+Or use a built-in icon:
+
+```py
+from aquaui import ..., Icon
+...
+the_dialog.with_icon(Icon.CAUTION)
+# availabile icons: Icon.NOTE, icon.CAUTION, Icon.STOP
+...
+```
+
+Note that absolute paths for icons are not yet supported.
+
 ### `.with_input(default_answer: str or None)`
 
 Specified that the dialog should have a text box:
