@@ -13,10 +13,14 @@ class Icon(Enum):
 
 
 class Dialog:
-    def __init__(self, title: str) -> None:
+    def __init__(self, text: str) -> None:
         """Start generation of applescript for dialog"""
 
-        self.applescript = f"display dialog {quotify(title)} "
+        self.applescript = f"display dialog {quotify(text)} "
+
+    def with_title(self, title: str):
+        self.applescript += f"with title {quotify(title)} "
+        return self
 
     def with_buttons(self, buttons: Union[Buttons, None] = None):
         """If buttons is None, default buttons are displayed"""

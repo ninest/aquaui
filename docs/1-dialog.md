@@ -9,7 +9,7 @@ the_dialog.show()
 
 ## Parameters
 
-- `title`: the text shown in the dialog
+- `text`: the text shown in the dialog
 
 ## Functions
 
@@ -32,6 +32,17 @@ Note that the above code is the same as
 from aquaui import Dialog
 
 the_dialog = Dialog("This is the dialog title").show()
+```
+
+### `.with_title(title: str)`
+
+The title of the dialog window, shown at the top.
+
+```py
+from aquaui import Dialog
+
+
+Dialog("Please open your folder").with_title("Important notification").show()
 ```
 
 ### `.with_buttons(buttons: Buttons)`
