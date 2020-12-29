@@ -15,7 +15,6 @@ def quotify(string):
 def run_command(command: Union[str, List]):
     """Run a command on the terminal and return the output"""
 
-    print(command)
     result = subprocess.check_output(command)
     return result.decode("utf-8")
 

@@ -2,11 +2,11 @@
 
 ## Contents
 
-1. [Dialog](https://github.com/ninest/aquaui/blob/master/docs/1-dialog.md)
-2. [Choice](https://github.com/ninest/aquaui/blob/master/docs/2-choice.md)
-3. [Notification](https://github.com/ninest/aquaui/blob/master/docs/3-notification.md)
-4. [Color picker](https://github.com/ninest/aquaui/blob/master/docs/4-color_picker.md)
-5. [Alert](https://github.com/ninest/aquaui/blob/master/docs/5-alert.md)
+1. [Dialog](./1-dialog.md)
+2. [Choice](./2-choice.md)
+3. [Notification](./3-notification.md)
+4. [Color picker](./4-color_picker.md)
+5. [Alert](./5-alert.md)
 6. [Examples](https://github.com/ninest/aquaui#Examples)
 
 ## Installation

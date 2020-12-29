@@ -45,7 +45,7 @@ Display native dialogs, alerts, notifications, color pickers, and more with Pyth
   - [x] Customize icon
   - [x] Schedulable
   - [ ] Callbacks (button pressed, reply text) – [relevant stackoverflow answer](https://stackoverflow.com/a/62248246/8677167)
-  - [ ] Fallback (AppleScript) notifications
+  - [x] Fallback (AppleScript) notifications
 - [ ] Color picker
 - [ ] File/folder picker
 
