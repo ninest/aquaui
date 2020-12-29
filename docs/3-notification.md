@@ -6,6 +6,8 @@ A native notification with a customizable title, subtitle, and informational tex
 
 - `title`: The notification's title
 
+Note that the notification's title does **not** change the notification's app name. The notification's app name defaults to "Python", and the only way to change it is by packaging your app with `py2app` and setting the icon.
+
 ## Functions
 
 Similarly, these are also all chainable functions
@@ -20,7 +22,7 @@ Set the informational text of the notification (third line).
 
 ### `.with_identity_image(image_path: str)` \*
 
-Set the image on the right side of the notification.
+Set the image on the right side of the notification. This does **not** change the "app image", which defaults to the Python Rocket. This Rocket image can only change if you package your app with `py2app` and set a custom icon.
 
 ### `.with_delay(delay: int)` \*
 
@@ -53,6 +55,6 @@ notification = Notification("Your pizza is here!").with_delay(15).send()
 
 #### Fallback
 
-In some cases, the native notification cannot be displayed, so the fallback notification will be sent instead. This fallback notification can only have the title, subtitle, and informational text. It cannot have an icon or delay.
+In some cases, the native notification cannot be displayed, so the fallback notification will be sent instead. This fallback notification can only have the title, subtitle, and informational text. It **cannot** have an icon or delay.
 
 - TBD

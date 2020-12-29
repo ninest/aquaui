@@ -51,14 +51,7 @@ Display native dialogs, alerts, notifications, color pickers, and more with Pyth
 
 ## Documentation
 
-[Documentation index and getting started](https://github.com/ninest/aquaui/tree/master/docs)
-
-1. [Dialog](https://github.com/ninest/aquaui/blob/master/assets/1-dialog.md)
-2. [Choice](https://github.com/ninest/aquaui/blob/master/assets/2-choice.md)
-3. [Notification](https://github.com/ninest/aquaui/blob/master/assets/3-notification.md)
-4. [Color picker](https://github.com/ninest/aquaui/blob/master/assets/4-color_picker.md)
-5. [Alert](https://github.com/ninest/aquaui/blob/master/assets/5-alert.md)
-6. [Examples](https://github.com/ninest/aquaui#examples)
+[**Find the documentation in the `docs/` folder**](https://github.com/ninest/aquaui/tree/master/docs)
 
 ## Examples
 
