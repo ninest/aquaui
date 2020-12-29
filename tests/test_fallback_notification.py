@@ -1,4 +1,4 @@
-from aquaui import ApplescriptNotification as ASN
+from aquaui.notification.fallback_notification import ApplescriptNotification as ASN
 
 
 def test_fallback_notification():

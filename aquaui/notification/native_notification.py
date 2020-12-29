@@ -17,7 +17,7 @@ except ImportError:
 
 If you are unable to do so, import and use ApplescriptNotification instead:
 
-from aquaui import ApplescriptNotification
+from aquaui.notification.fallback_notification import ApplescriptNotification
 """
     )
 

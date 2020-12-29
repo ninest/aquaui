@@ -1,5 +1,11 @@
 # Notification
 
+Notifications are imported in a different manner:
+
+```py
+from aquaui.notification.native_notification import Notification
+```
+
 To use notifications, the following dependencies are required:
 
 - `pyobjc-core`
