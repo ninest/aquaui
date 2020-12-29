@@ -1,10 +1,25 @@
 from typing import Union
 import os
-import objc
-import Foundation
 
-# This import is required for NSImage
-import AppKit  # noqa: 5401
+try:
+    import objc
+    import Foundation
+
+    # This import is required for NSImage
+    import AppKit  # noqa: 5401
+except ImportError:
+    raise Exception(
+        """To use native notifications, you need to install the following dependencies:
+- pyobjc-core
+- pyobjc-framework-NotificationCenter
+- pyobjc-framework-UserNotifications
+- pyobjc-framework-UserNotificationsUI
+
+If you are unable to do so, import and use ApplescriptNotification instead:
+
+from aquaui import ApplescriptNotification
+"""
+    )
 
 from .fallback_notification import ApplescriptNotification
 
@@ -17,16 +32,16 @@ NSImage = objc.lookUpClass("NSImage")  # type: ignore
 class Notification:
     """Show a notification with a title, subtitle, info text, image, delay, and sound"""
 
-    def __init__(self, title: Union[str, None] = None) -> None:
+    def __init__(self, text: Union[str, None] = None) -> None:
         """
-        title is the large text at the top of the notification, not required
+        info text is the third (last) line
         """
 
         self.notification = NSUserNotification.alloc().init()
 
-        if title is not None:
-            self.notification.setTitle_(title)
-            self.title = title
+        if text is not None:
+            self.notification.setInformativeText_(text)
+            self.text = text
 
     def with_subtitle(self, subtitle: str):
         """
@@ -37,12 +52,13 @@ class Notification:
         self.subtitle = subtitle
         return self
 
-    def with_informative_text(self, informative_text: str):
+    def with_title(self, title: str):
         """
-        info text is the third (last) line
+        title is the large text at the top of the notification, not required
         """
 
-        self.notification.setInformativeText_(informative_text)
+        self.notification.setTitle_(title)
+        self.title = title
         return self
 
     def _create_image(self, image_path: str):
@@ -84,4 +100,4 @@ class Notification:
         try:
             NSUserNotificationCenter.defaultUserNotificationCenter().scheduleNotification_(self.notification)
         except:
-            return ApplescriptNotification(self.title).with_subtitle(self.subtitle).send()
+            return ApplescriptNotification(self.text).with_subtitle(self.subtitle).with_title(self.title).send()

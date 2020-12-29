@@ -10,10 +10,6 @@ documentation = "https://github.com/ninest/aquaui/"
 
 [tool.poetry.dependencies]
 python = "^3.7"
-pyobjc-core = "^7.0.1"
-pyobjc-framework-NotificationCenter = "^7.0.1"
-pyobjc-framework-UserNotifications = "^7.0.1"
-pyobjc-framework-UserNotificationsUI = "^7.0.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.2"

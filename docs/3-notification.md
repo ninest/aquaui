@@ -1,16 +1,33 @@
 # Notification
 
+To use notifications, the following dependencies are required:
+
+- `pyobjc-core`
+- `pyobjc-framework-NotificationCenter`
+- `pyobjc-framework-UserNotifications`
+- `pyobjc-framework-UserNotificationsUI`
+
+If you are unable to or cannot install them, use `ApplescriptNotification` instead:
+
+```py
+from aquaui import ApplescriptNotification
+```
+
 A native notification with a customizable title, subtitle, and informational text. In some cases, and icon and delay can also be set.\*
 
 ## Parameters
 
-- `title`: The notification's title
-
-Note that the notification's title does **not** change the notification's app name. The notification's app name defaults to "Python", and the only way to change it is by packaging your app with `py2app` and setting the icon.
+- `text`: The notification's body text
 
 ## Functions
 
 Similarly, these are also all chainable functions
+
+### `.with_title(title: str)`
+
+The notification's title, the first line.
+
+Note that the notification's title does **not** change the notification's app name. The notification's app name defaults to "Python", and the only way to change it is by packaging your app with `py2app` and setting the icon.
 
 ### `.with_subtitle(subtitle: str)`
 

@@ -238,62 +238,6 @@ optional = false
 python-versions = ">=2.7, !=3.0.*, !=3.1.*, !=3.2.*, !=3.3.*"
 
 [[package]]
-name = "pyobjc-core"
-version = "7.0.1"
-description = "Python<->ObjC Interoperability Module"
-category = "main"
-optional = false
-python-versions = ">=3.6"
-
-[[package]]
-name = "pyobjc-framework-cocoa"
-version = "7.0.1"
-description = "Wrappers for the Cocoa frameworks on macOS"
-category = "main"
-optional = false
-python-versions = ">=3.6"
-
-[package.dependencies]
-pyobjc-core = ">=7.0.1"
-
-[[package]]
-name = "pyobjc-framework-notificationcenter"
-version = "7.0.1"
-description = "Wrappers for the framework NotificationCenter on macOS"
-category = "main"
-optional = false
-python-versions = ">=3.6"
-
-[package.dependencies]
-pyobjc-core = ">=7.0.1"
-pyobjc-framework-Cocoa = ">=7.0.1"
-
-[[package]]
-name = "pyobjc-framework-usernotifications"
-version = "7.0.1"
-description = "Wrappers for the framework UserNotifications on macOS"
-category = "main"
-optional = false
-python-versions = ">=3.6"
-
-[package.dependencies]
-pyobjc-core = ">=7.0.1"
-pyobjc-framework-Cocoa = ">=7.0.1"
-
-[[package]]
-name = "pyobjc-framework-usernotificationsui"
-version = "7.0.1"
-description = "Wrappers for the framework UserNotificationsUI on macOS"
-category = "main"
-optional = false
-python-versions = ">=3.6"
-
-[package.dependencies]
-pyobjc-core = ">=7.0.1"
-pyobjc-framework-Cocoa = ">=7.0.1"
-pyobjc-framework-UserNotifications = ">=7.0.1"
-
-[[package]]
 name = "pyparsing"
 version = "2.4.7"
 description = "Python parsing module"
@@ -414,7 +358,7 @@ testing = ["pytest (>=3.5,!=3.7.3)", "pytest-checkdocs (>=1.2.3)", "pytest-flake
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.7"
-content-hash = "29c0c263d38f0bc48267cd56aeb1fc6016cfbb68c3e237cbaad2b205b8a68335"
+content-hash = "35b05741c417ad73347fccb1c14cea07bc593e5c3186dc2530a64bdd2c1e1a67"
 
 [metadata.files]
 appdirs = [
@@ -507,34 +451,6 @@ pycodestyle = [
 pyflakes = [
     {file = "pyflakes-2.2.0-py2.py3-none-any.whl", hash = "sha256:0d94e0e05a19e57a99444b6ddcf9a6eb2e5c68d3ca1e98e90707af8152c90a92"},
     {file = "pyflakes-2.2.0.tar.gz", hash = "sha256:35b2d75ee967ea93b55750aa9edbbf72813e06a66ba54438df2cfac9e3c27fc8"},
-]
-pyobjc-core = [
-    {file = "pyobjc-core-7.0.1.tar.gz", hash = "sha256:7213bfd48c49f5b4d479256924e0120d728ed449de8188cba9e204c434ed07f2"},
-    {file = "pyobjc_core-7.0.1-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:6f84a5744e44ec709daca1e66b95c3c010e4159bc2cfc442c27c0d28b0456eda"},
-    {file = "pyobjc_core-7.0.1-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:e2fdba7997d5c9d518256f9d2e9f7780fcc6332b0371207374f38d7e9fad7bc8"},
-    {file = "pyobjc_core-7.0.1-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:758cf96f3848c6e177d6ad94d44fec1b9ea5e32ca066513184d8f1e70d71ff6e"},
-    {file = "pyobjc_core-7.0.1-cp39-cp39-macosx_11_0_universal2.whl", hash = "sha256:61c756c9bd5c55e9137cf0549f1d931dd1e1bff30a1cc97e46e55b94d5dc5d97"},
-]
-pyobjc-framework-cocoa = [
-    {file = "pyobjc-framework-Cocoa-7.0.1.tar.gz", hash = "sha256:8a545b47b2021884bd8e5644ac32ee6d99a1f8e6a45cab3e6d1b999adf968630"},
-    {file = "pyobjc_framework_Cocoa-7.0.1-cp37-cp37m-macosx_10_9_x86_64.whl", hash = "sha256:4675accc4720b42f456a35ba7cdd9e1cb44b9b84fcc600beef120ae05d2c5d27"},
-    {file = "pyobjc_framework_Cocoa-7.0.1-cp38-cp38-macosx_10_9_x86_64.whl", hash = "sha256:42e106c3d688e66b1032b0819daa842a78eff6f7646b5af4be8774d0c8f5e200"},
-    {file = "pyobjc_framework_Cocoa-7.0.1-cp39-cp39-macosx_10_9_x86_64.whl", hash = "sha256:8aa715fa1ff367330fc58eadc1747e222bdf854b9ece6936487c9c4f4e2627d3"},
-    {file = "pyobjc_framework_Cocoa-7.0.1-cp39-cp39-macosx_11_0_universal2.whl", hash = "sha256:1d9de6b0612a5e24899522a797425c834405a536db41ba06a19df01b7008eeae"},
-]
-pyobjc-framework-notificationcenter = [
-    {file = "pyobjc-framework-NotificationCenter-7.0.1.tar.gz", hash = "sha256:585b0f777e810fb11bb1e05aec17e488c7e334138053b79bc5e78750863e44f0"},
-    {file = "pyobjc_framework_NotificationCenter-7.0.1-cp36-abi3-macosx_10_9_x86_64.whl", hash = "sha256:463dda0e77635695c8bafaeb96403722bd6fa897bb3fa4fdc0c3324183136a44"},
-    {file = "pyobjc_framework_NotificationCenter-7.0.1-cp36-abi3-macosx_11_0_universal2.whl", hash = "sha256:f44eab63838f34ed84da140879aca3d289165c223d4b815ea50f8235d96bffc2"},
-]
-pyobjc-framework-usernotifications = [
-    {file = "pyobjc-framework-UserNotifications-7.0.1.tar.gz", hash = "sha256:8bab9d495b3b84877515ad8f1346821ed94ed0006362aa10629b4011ad2d8595"},
-    {file = "pyobjc_framework_UserNotifications-7.0.1-cp36-abi3-macosx_10_9_x86_64.whl", hash = "sha256:23103cbe732aaf9dfa9e56625014e71edd569d9781587af9dd3cad7e3f7031cc"},
-    {file = "pyobjc_framework_UserNotifications-7.0.1-cp36-abi3-macosx_11_0_universal2.whl", hash = "sha256:7b9084d8b045f8652478d9d80ff7d97d1ce620fd3451e46d1e8cbcbfc56fb475"},
-]
-pyobjc-framework-usernotificationsui = [
-    {file = "pyobjc-framework-UserNotificationsUI-7.0.1.tar.gz", hash = "sha256:325e83d4b4f87f136ae575eb4dc6c5e67f8411c415b92ff5c6816fb497f580d3"},
-    {file = "pyobjc_framework_UserNotificationsUI-7.0.1-py2.py3-none-any.whl", hash = "sha256:8f06845164372c7292c83f6cb640aa29204e2d2dd302de0ed07b4168e7a81021"},
 ]
 pyparsing = [
     {file = "pyparsing-2.4.7-py2.py3-none-any.whl", hash = "sha256:ef9d7589ef3c200abe66653d3f1ab1033c3c419ae9b9bdb1240a85b024efc88b"},
