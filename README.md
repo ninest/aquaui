@@ -96,8 +96,10 @@ If this example interests you, check out my other library [Flixpy](https://githu
 
 **Display a notification:**
 
+Warning: please read the [documentation](./docs/3-notification.md) before using notifications. There are additional dependencies to install.
+
 ```py
-from aquaui import Notification
+from aquaui.notification.native_notification import Notification
 
 notification = (
     Notification("Hello!")
@@ -111,7 +113,7 @@ notification = (
 **Schedule a notification:**
 
 ```py
-from aquaui import Notification
+from aquaui.notification.native_notification import Notification
 
 notification = Notification("Your pizza is here!").with_delay(15).send()
 # 15 seconds delay
