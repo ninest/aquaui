@@ -1,5 +1,5 @@
 from aquaui.utils import run_applescript
-from typing import List
+from typing import List, Union
 
 
 class ColorPicker:
@@ -13,7 +13,11 @@ class ColorPicker:
 
         return self
 
-    def show(self):
-        result = run_applescript(self.applescript)
-        color_array = list(map(int, result.replace("\n", "").split(", ")))
-        return color_array
+    def show(self) -> Union[List[int], None]:
+        try:
+            result = run_applescript(self.applescript)
+            color_array = list(map(int, result.replace("\n", "").split(", ")))
+            return color_array
+        except:
+            # If cancelled using escape key
+            return None
