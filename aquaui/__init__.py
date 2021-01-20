@@ -1,4 +1,4 @@
-__version__ = "0.0.1-1"
+__version__ = "0.0.1-2"
 
 from aquaui.types.buttons import Buttons
 from aquaui.dialog import Dialog, Icon

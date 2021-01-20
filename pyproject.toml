@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "aquaui"
-version = "0.0.1-1"
+version = "0.0.1-2"
 description = "Native Mac OS UI elements with python"
 authors = ["ninest"]
 readme = "README.md"
